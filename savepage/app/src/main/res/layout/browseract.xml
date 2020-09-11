@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/browseractRoot"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<WebView
+		android:id="@+id/web5"
+		android:layout_marginTop="40dp"
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginBottom="40dp"/>
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="41dp"
+		android:layout_alignParentBottom="true">
+
+		<View
+			android:background="?android:attr/dividerVertical"
+			android:layout_width="match_parent"
+			android:layout_height="1dp"/>
+		
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="40dp"
+			android:paddingLeft="20dp"
+			android:paddingRight="20dp"
+			android:paddingTop="7dp">
+
+			<ImageButton
+				android:layout_width="25dp"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="25dp"
+				android:background="@drawable/btn_back"
+				android:onClick="onReturnButton"
+				android:id="@+id/btn_back"/>
+
+			<ImageButton
+				android:layout_width="25dp"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="25dp"
+				android:layout_centerHorizontal="true"
+				android:background="@drawable/ic_save_black_24dp"
+				android:id="@+id/btn_save_prompt"/>
+
+			<ImageButton
+				android:layout_width="25dp"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="25dp"
+				android:layout_alignParentRight="true"
+				android:background="@drawable/ic_search"
+				android:id="@+id/btn_search_go"/>
+
+		</RelativeLayout>
+
+	</LinearLayout>
+	
+	<ProgressBar
+		android:layout_width="match_parent"
+		android:layout_height="2dp"
+		android:visibility="gone"
+		style="?android:attr/progressBarStyleHorizontal"
+		android:layout_marginTop="40dp"
+		android:id="@+id/progress_bar_1"  />
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="40dp"
+		android:background="#E5EAFF">
+
+		<EditText
+			android:layout_width="match_parent"
+			android:ems="10"
+			android:layout_height="wrap_content"
+			android:layout_marginRight="45dp"
+			android:hint="enter url"
+			android:id="@+id/et_url"
+			android:textSize="18sp"
+			android:singleLine="true"
+			android:imeOptions="actionGo"
+			android:inputType="textAutoComplete"/>
+
+		<ImageButton
+			android:layout_width="25dp"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_height="25dp"
+			android:background="@drawable/ic_clear_grey600_24dp"
+			android:layout_alignParentRight="true"
+			android:layout_marginRight="10dp"
+			android:layout_marginTop="10dp"
+			android:id="@+id/btn_url_clear"/>
+
+	</RelativeLayout>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:id="@+id/saveRenameContainer"
+		android:visibility="gone">
+
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:id="@+id/saveRenameContainerShadow"
+			android:background="#000000"
+			android:alpha="0.1"/>
+
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="#FFFFFF"
+			android:layout_centerInParent="true"
+			android:padding="10dp">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Save for Offline"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:textColor="#666666"/>
+
+			<EditText
+				android:id="@+id/et_save_offline_title"
+				android:layout_width="match_parent"
+				android:ems="10"
+				android:layout_height="wrap_content"
+				android:singleLine="true"
+				android:textColor="#989898"/>
+
+			<LinearLayout
+				android:orientation="horizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="right|center_vertical"
+				android:layout_marginLeft="80dp">
+
+				<Button
+					android:layout_width="wrap_content"
+					style="?android:attr/buttonBarButtonStyle"
+					android:layout_height="wrap_content"
+					android:text="cancel"
+					android:onClick="savePageCancel"
+					android:textColor="#989898"
+					android:id="@+id/btn_save_rename_cancel"
+					android:textStyle="italic"/>
+
+				<View
+					android:layout_width="1dp"
+					android:layout_height="30dp"
+					android:background="#989898"/>
+
+				<Button
+					android:layout_width="wrap_content"
+					style="?android:attr/buttonBarButtonStyle"
+					android:layout_height="wrap_content"
+					android:text="save"
+					android:onClick="savePageConfirm"
+					android:textColor="#989898"
+					android:textStyle="italic"
+					android:id="@+id/btn_save_rename_save"/>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+	</RelativeLayout>
+
+</RelativeLayout>
+

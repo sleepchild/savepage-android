@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+	
+	<TextView
+		android:id="@+id/li_tv_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="10pt"
+		android:maxRows="3"
+		android:ellipsize="end"
+		android:paddingLeft="5dp"
+		android:paddingTop="5dp"
+		android:paddingBottom="5dp"
+		android:textColor="@color/black"/>
+	
+	<View
+		android:layout_height="1dp"
+		android:layout_width="match_parent"
+		android:background="#053181"/>
+    
+</LinearLayout>

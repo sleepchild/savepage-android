@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">savepage</string>
+	<string name="categ_item_new">createNewCategory</string>
+</resources>

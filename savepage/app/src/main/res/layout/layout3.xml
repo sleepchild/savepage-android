@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="center"
+	android:background="#00A0A0"
+	android:paddingLeft="10dp"
+	android:paddingRight="10dp">
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="select an action."
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:textColor="#FFFFFF"
+		android:layout_marginBottom="40dp"/>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="#FFFFFF"/>
+
+	<LinearLayout
+		android:onClick="onAction"
+		android:id="@+id/ll_saved_sites"
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:paddingTop="5dp"
+		android:paddingBottom="5dp">
+
+		<ImageView
+			android:layout_width="42dp"
+			android:layout_height="42dp"
+			android:background="@drawable/ic_dashboard_black_24dp"
+			android:layout_marginRight="10dp"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="View Saved Sites"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:textColor="#FFFFFF"
+			android:textStyle="italic"/>
+
+	</LinearLayout>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="#FFFFFF"/>
+
+	<LinearLayout
+		android:onClick="onAction"
+		android:id="@+id/ll_enter_url"
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:paddingTop="5dp"
+		android:paddingBottom="5dp">
+
+		<ImageView
+			android:layout_width="42dp"
+			android:layout_height="42dp"
+			android:background="@drawable/ic_public_black_24dp"
+			android:layout_marginRight="10dp"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Enter URL"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:textColor="#FFFFFF"
+			android:textStyle="italic"/>
+
+	</LinearLayout>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="#FFF7FA"/>
+
+</LinearLayout>
+

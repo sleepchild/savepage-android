@@ -7,9 +7,9 @@ android {
     defaultConfig {
         applicationId "mrtubbs.savepage"
         minSdkVersion 14
-        targetSdkVersion 27
+        targetSdkVersion 24
         versionCode 1
-        versionName "0.9"
+        versionName "2020.09.22_003"
     }
     buildTypes {
         release {

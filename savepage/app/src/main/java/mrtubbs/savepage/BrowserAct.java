@@ -22,7 +22,7 @@ public class BrowserAct extends Activity
 	String currentUrl = "";
 	String pagename, saveTitle;
 	WebView web5;
-	EditText etUrl, etSaveTitle;
+	EditText etUrl, etSaveTitle, etSaveCategory;
 	ProgressBar progress87;
 	ImageButton btngo, btnClear, btnsave, btnExit;
 	RelativeLayout root;
@@ -118,7 +118,7 @@ public class BrowserAct extends Activity
 		imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 		//
 		//
-		web5 = (WebView) findViewById(R.id.web5);
+		web5 = (WebView) findViewById(R.id.browseract_web5);
 		WebSettings wst = web5.getSettings();
 		web5.getSettings().setJavaScriptEnabled(true);
 		
@@ -136,7 +136,7 @@ public class BrowserAct extends Activity
 		wst.setAppCachePath("/sdcard/fm/");
 		//
 		//
-		progress87 = (ProgressBar)findViewById(R.id.progress_bar_1);
+		progress87 = (ProgressBar)findViewById(R.id.browseract_progress_bar_1);
 		progress87.setMax(100);
 		//
 		etUrl = (EditText)findViewById(R.id.et_url);
@@ -155,7 +155,7 @@ public class BrowserAct extends Activity
 		
 		//etUrl.requestFocus();
 		//
-		btnClear = (ImageButton) findViewById(R.id.btn_url_clear);
+		btnClear = (ImageButton) findViewById(R.id.browseract_btn_url_clear);
 		btnClear.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View v){
 				//
@@ -163,7 +163,7 @@ public class BrowserAct extends Activity
 			}
 		});
 		//
-		btngo = (ImageButton) findViewById(R.id.btn_search_go);
+		btngo = (ImageButton) findViewById(R.id.browseract_btn_search_go);
 		btngo.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View p1){
@@ -179,7 +179,7 @@ public class BrowserAct extends Activity
 			}
 		});
 		
-		etSaveTitle = (EditText) findViewById(R.id.et_save_offline_title);
+		etSaveTitle = (EditText) findViewById(R.id.browseract_et_save_offline_title);
 		etSaveTitle.setSelectAllOnFocus(true);
 		etSaveTitle.setOnEditorActionListener(new TextView.OnEditorActionListener(){
 			@Override
@@ -190,7 +190,7 @@ public class BrowserAct extends Activity
 			}
 		} );
 		
-		btnsave = (ImageButton) findViewById(R.id.btn_save_prompt);
+		btnsave = (ImageButton) findViewById(R.id.browseract_btn_save_prompt);
 		btnsave.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View view){
@@ -204,16 +204,23 @@ public class BrowserAct extends Activity
 				showSoftInput(etSaveTitle);
 			}
 		});
+		
+		etSaveCategory = (EditText) findViewById(R.id.browseract_et_category);
 		//
 		
 	}
 	
 	public void savePageConfirm(View v){
 		saveTitle = etSaveTitle.getText().toString().replace("/","_");
+		String categ = etSaveCategory.getText().toString().replace("/","");
+		
 		if(saveTitle.isEmpty()){
 			saveTitle = web5.getTitle();
 		}
-		final String path = fm.getSavePath(saveTitle);
+		if(categ.isEmpty()){
+			//
+		}
+		final String path = fm.getSavePath(saveTitle,categ);
 		
 		web5.saveWebArchive(path, false, new ValueCallback<String>(){
 
@@ -308,6 +315,38 @@ public class BrowserAct extends Activity
 		imm.hideSoftInputFromWindow(etUrl.getWindowToken(),0);
 	}
 	
+	LinearLayout listHolder;
+	public void showCategPicker(View v){
+		hideSoftInput();
+		findViewById(R.id.browseract_categPicker).setVisibility(View.VISIBLE);
+		//
+		LayoutInflater lInf = getLayoutInflater();
+		listHolder = (LinearLayout)findViewById(R.id.browseract_categ_list);
+		//List<String> list = fm.getCategories()
+		for(String cat: fm.getCategories()){
+			View view = lInf.inflate(R.layout.categ_item,null,false);
+			//*
+			TextView tv = (TextView) view.findViewById(R.id.tv_categ_item);
+			tv.setText(cat);
+			view.setTag(cat);
+			listHolder.addView(view);
+			//*/
+		}
+	}
+	
+	public void closeCategChooser(View v){
+		v.setVisibility(View.GONE);
+		if(listHolder!=null){
+			listHolder.removeAllViews();
+		}
+	}
+	
+	public void onChoseCategory(View v){
+		closeCategChooser(findViewById(R.id.browseract_categPicker));
+		//
+		String categ = v.getTag().toString();
+		etSaveCategory.setText(categ);
+	}
 	//
 	boolean opcr = false;
 	//

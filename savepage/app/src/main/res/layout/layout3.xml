@@ -4,85 +4,84 @@
 	android:orientation="vertical"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:gravity="center"
-	android:background="#00A0A0"
-	android:paddingLeft="10dp"
-	android:paddingRight="10dp">
-
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="select an action."
-		android:textAppearance="?android:attr/textAppearanceMedium"
-		android:textColor="#FFFFFF"
-		android:layout_marginBottom="40dp"/>
-
-	<View
+	android:background="#00A0A0">
+		
+		<LinearLayout
+		android:orientation="horizontal"
 		android:layout_width="match_parent"
-		android:layout_height="1dp"
-		android:background="#FFFFFF"/>
-
-	<LinearLayout
-		android:onClick="onAction"
+		android:layout_height="wrap_content"
+		android:layout_weight="1.0"
+		android:background="#00A0A0"
+		android:gravity="center"
 		android:id="@+id/ll_saved_sites"
-		android:orientation="horizontal"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:gravity="center"
-		android:paddingTop="5dp"
-		android:paddingBottom="5dp">
+		android:onClick="onAction">
 
 		<ImageView
 			android:layout_width="42dp"
 			android:layout_height="42dp"
-			android:background="@drawable/ic_dashboard_black_24dp"
-			android:layout_marginRight="10dp"/>
+			android:background="@drawable/ic_dashboard_black_24dp"/>
 
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="View Saved Sites"
+			android:text="View Saved Pages"
 			android:textAppearance="?android:attr/textAppearanceMedium"
-			android:textColor="#FFFFFF"
-			android:textStyle="italic"/>
+			android:textColor="#F2F2F2"
+			android:layout_marginLeft="30dp"/>
 
-	</LinearLayout>
+		</LinearLayout>
 
-	<View
+	<RelativeLayout
 		android:layout_width="match_parent"
-		android:layout_height="1dp"
-		android:background="#FFFFFF"/>
+		android:layout_height="40dp"
+		android:background="#019496">
+
+		<View
+			android:background="?android:attr/dividerVertical"
+			android:layout_width="match_parent"
+			android:layout_height="1dp"/>
+
+		<View
+			android:background="?android:attr/dividerVertical"
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:layout_alignParentBottom="true"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="select an action."
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_centerInParent="true"
+			android:textColor="#FFFFFF"/>
+
+	</RelativeLayout>
 
 	<LinearLayout
-		android:onClick="onAction"
-		android:id="@+id/ll_enter_url"
 		android:orientation="horizontal"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_weight="1.0"
+		android:background="#00A0A0"
 		android:gravity="center"
-		android:paddingTop="5dp"
-		android:paddingBottom="5dp">
+		android:id="@+id/ll_enter_url"
+		android:onClick="onAction">
 
 		<ImageView
 			android:layout_width="42dp"
 			android:layout_height="42dp"
-			android:background="@drawable/ic_public_black_24dp"
-			android:layout_marginRight="10dp"/>
+			android:background="@drawable/ic_public_black_24dp"/>
 
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="Enter URL"
+			android:text="Enter Url"
 			android:textAppearance="?android:attr/textAppearanceMedium"
-			android:textColor="#FFFFFF"
-			android:textStyle="italic"/>
+			android:textColor="#FEFEFE"
+			android:layout_marginLeft="30dp"/>
 
 	</LinearLayout>
-
-	<View
-		android:layout_width="match_parent"
-		android:layout_height="1dp"
-		android:background="#FFF7FA"/>
 
 </LinearLayout>
+
 

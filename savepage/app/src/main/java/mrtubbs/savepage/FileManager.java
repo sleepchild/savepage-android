@@ -22,8 +22,9 @@ public class FileManager
 	}
 
 	
-	public String getSavePath(String filename){
-		return fixPath( folder+filename+".mht" );
+	public String getSavePath(String filename, String categ){
+		mkdirs(folder+categ);
+		return fixPath( folder+categ+"/"+filename+".mht" );
 	}
 	
 	private String fixPath(String path){

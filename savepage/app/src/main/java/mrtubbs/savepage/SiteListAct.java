@@ -2,12 +2,17 @@ package mrtubbs.savepage;
 //
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.*;
-import android.view.*;
-import java.util.*;
-import android.view.View.*;
-import android.content.*;
-import android.graphics.*;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.ListView;
+import android.widget.AdapterView;
+import java.util.List;
+import android.widget.Toast;
+import android.view.View;
+import android.content.Intent;
+import android.graphics.Color;
 
 public class SiteListAct extends Activity
 {
@@ -21,14 +26,13 @@ public class SiteListAct extends Activity
 	TextView itemsOptionTitle, tabItemAll;
 	ListView list5;
 	FileManager fm;
-	mAdapter adapter;
+	mAdaptor adapter;
 	View lastTab;
-	
+	//boolean isrenaming = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		// TODO: Implement this method
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pagelist);
 		//
@@ -49,7 +53,7 @@ public class SiteListAct extends Activity
 		fm = new FileManager(getApplicationContext());
 		//
 		showCategTabs();
-		adapter = new mAdapter(fm.getPages(currentCategInView));
+		adapter = new mAdaptor(getApplicationContext(),fm.getPages(currentCategInView));
 		list5 = (ListView) findViewById(R.id.list5);
 		list5.setAdapter(adapter);
 		list5.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -69,12 +73,21 @@ public class SiteListAct extends Activity
 			}
 		});
 		//
-	}// initVoid
+	}// e.o initVoid
 
 	public void startBrowserAct(CharSequence path){
 		Intent webInt = new Intent(SiteListAct.this, BrowserAct.class );
 		webInt.putExtra(Intent.EXTRA_TEXT, path);
-		startActivity(webInt);
+		startActivityForResult(webInt,425);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		//
+		super.onActivityResult(requestCode, resultCode, data);
+		adapter.update(fm.getPages(currentCategInView));
+		showCategTabs();
 	}
 	
 	public void switchTab(View v){
@@ -98,6 +111,8 @@ public class SiteListAct extends Activity
 		switch(v.getId()){
 			case R.id.item_opt_rename:
 				//
+				// showRenameDialog();
+				toast("oops, I forgot to implement that!");
 				break;
 			case R.id.item_opt_move:// move to category/
 				//
@@ -105,10 +120,12 @@ public class SiteListAct extends Activity
 				break;
 			case R.id.item_opt_delete:
 				//
+				toast("oops, I forgot to implement that!");
 				break;
 		}
 		//hideItemOptions();
 	}
+	
 	
 	boolean isOptionsShown = false;
 	public void showItemOptions(String itemPath){
@@ -144,10 +161,6 @@ public class SiteListAct extends Activity
 		isOptionsShown=false;
 	}
 	
-	///
-	///
-	
-	
 	public void showCategChoice(){
 		//
 		//itemOptsCategChoice.setVisibility(View.VISIBLE);
@@ -169,17 +182,13 @@ public class SiteListAct extends Activity
 	}
 	
 	public void onChoseCategory(View v){
-		// catwg items except create new
-		// @ Categ : this class is useless
-		//Categ cat = (Categ) v.getTag(); 
 		if(fm.moveToCateg(v.getTag().toString(), movingPagePath)){
 			adapter.update(fm.getPages(currentCategInView));
-			//adapter.notifyDataSetChanged();
+			showCategTabs();
+			//
 			toast("moved");
 		}else{ toast("unspecified error occured"); }
-		//String categName = cat.name;
 		//
-		//categListHolder.removeAllViews();
 		hideItemOptions();
 	}
 	
@@ -188,14 +197,10 @@ public class SiteListAct extends Activity
 		showView(optsNewCategContainer);
 		hideView(itemOptsCategChoice);
 		etNewCateg.requestFocus();
-		//android.R.drawable. arrow_up_float
-		//
-		//hideItemOptions();
 	}
 	
 	public void createCateg(View v){
 		//
-		//android.R.drawable.
 		String catN = etNewCateg.getText().toString();
 		if(!catN.isEmpty()){
 			if(fm.moveToCateg(catN, movingPagePath)){
@@ -212,8 +217,12 @@ public class SiteListAct extends Activity
 	}
 	
 	//////////
+	LinearLayout tabholder;
 	public void showCategTabs(){
-		LinearLayout tabholder = (LinearLayout) findViewById(R.id.tab_item_container);
+		if(tabholder==null){
+			tabholder = (LinearLayout) findViewById(R.id.tab_item_container);
+		}
+		tabholder.removeAllViews();
 		for(String tab : fm.getCategories()){
 			LinearLayout root = (LinearLayout) getLayoutInflater().inflate(R.layout.tab_item_categ,null,false);
 			TextView tvTab = (TextView) root.findViewById(R.id.tab_item_categTextView);
@@ -224,14 +233,12 @@ public class SiteListAct extends Activity
 	}
 	
 	//////////////
-	//////////////
 	private void showView(View v){
 		v.setVisibility(View.VISIBLE);
 	}
 	private void hideView(View v){
 		v.setVisibility(View.GONE);
 	}
-	
 	
 	@Override
 	public void onBackPressed()
@@ -241,53 +248,6 @@ public class SiteListAct extends Activity
 			return;
 		}
 		super.onBackPressed();
-	}
-	
-	class mAdapter extends BaseAdapter
-	{
-		private List<Page> pagelist = new ArrayList<>();;
-		
-		mAdapter(List<Page> pagelist){
-			this.pagelist = pagelist;
-		}
-		
-		public void update(List<Page> newList){
-			this.pagelist = newList;
-			notifyDataSetChanged();
-		}
-
-		@Override
-		public int getCount()
-		{
-			//
-			return pagelist.size();
-		}
-
-		@Override
-		public Object getItem(int p1)
-		{
-			return pagelist.get(p1);
-		}
-
-		@Override
-		public long getItemId(int p1)
-		{
-			return p1;
-		}
-
-		@Override
-		public View getView(int pos, View view, ViewGroup p3)
-		{
-			//
-			Page pg = pagelist.get(pos);
-			view = getLayoutInflater().inflate(R.layout.list_item,null);
-			TextView li_Title = (TextView) view.findViewById(R.id.li_tv_title);
-			li_Title.setText(pg.getTitle());
-			view.setTag(pg.getPath());
-			//
-			//
-			return view;
-		}
 	}
 	
 	public void toast(CharSequence msg){

@@ -6,7 +6,7 @@
 	android:layout_height="match_parent">
 
 	<WebView
-		android:id="@+id/web5"
+		android:id="@+id/browseract_web5"
 		android:layout_marginTop="40dp"
 		android:orientation="vertical"
 		android:layout_width="match_parent"
@@ -23,7 +23,6 @@
 			android:background="?android:attr/dividerVertical"
 			android:layout_width="match_parent"
 			android:layout_height="1dp"/>
-		
 
 		<RelativeLayout
 			android:layout_width="match_parent"
@@ -38,7 +37,7 @@
 				android:layout_height="25dp"
 				android:background="@drawable/btn_back"
 				android:onClick="onReturnButton"
-				android:id="@+id/btn_back"/>
+				android:id="@+id/browseract_btn_back"/>
 
 			<ImageButton
 				android:layout_width="25dp"
@@ -46,7 +45,7 @@
 				android:layout_height="25dp"
 				android:layout_centerHorizontal="true"
 				android:background="@drawable/ic_save_black_24dp"
-				android:id="@+id/btn_save_prompt"/>
+				android:id="@+id/browseract_btn_save_prompt"/>
 
 			<ImageButton
 				android:layout_width="25dp"
@@ -54,19 +53,19 @@
 				android:layout_height="25dp"
 				android:layout_alignParentRight="true"
 				android:background="@drawable/ic_search"
-				android:id="@+id/btn_search_go"/>
+				android:id="@+id/browseract_btn_search_go"/>
 
 		</RelativeLayout>
 
 	</LinearLayout>
-	
+
 	<ProgressBar
 		android:layout_width="match_parent"
 		android:layout_height="2dp"
 		android:visibility="gone"
 		style="?android:attr/progressBarStyleHorizontal"
 		android:layout_marginTop="40dp"
-		android:id="@+id/progress_bar_1"  />
+		android:id="@+id/browseract_progress_bar_1"/>
 
 	<RelativeLayout
 		android:layout_width="match_parent"
@@ -93,7 +92,7 @@
 			android:layout_alignParentRight="true"
 			android:layout_marginRight="10dp"
 			android:layout_marginTop="10dp"
-			android:id="@+id/btn_url_clear"/>
+			android:id="@+id/browseract_btn_url_clear"/>
 
 	</RelativeLayout>
 
@@ -107,9 +106,9 @@
 			android:orientation="vertical"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:id="@+id/saveRenameContainerShadow"
+			android:id="@+id/browseract_saveRenameContainerShadow"
 			android:background="#000000"
-			android:alpha="0.1"/>
+			android:alpha="0.5"/>
 
 		<LinearLayout
 			android:orientation="vertical"
@@ -117,7 +116,9 @@
 			android:layout_height="wrap_content"
 			android:background="#FFFFFF"
 			android:layout_centerInParent="true"
-			android:padding="10dp">
+			android:padding="10dp"
+			android:id="@+id/browseract_webactivity_savepage_dial"
+			android:visibility="visible">
 
 			<TextView
 				android:layout_width="wrap_content"
@@ -126,13 +127,47 @@
 				android:textAppearance="?android:attr/textAppearanceMedium"
 				android:textColor="#666666"/>
 
-			<EditText
-				android:id="@+id/et_save_offline_title"
+			<LinearLayout
+				android:orientation="vertical"
 				android:layout_width="match_parent"
-				android:ems="10"
-				android:layout_height="wrap_content"
-				android:singleLine="true"
-				android:textColor="#989898"/>
+				android:layout_height="wrap_content">
+
+				<EditText
+					android:id="@+id/browseract_et_save_offline_title"
+					android:layout_width="match_parent"
+					android:ems="10"
+					android:layout_height="wrap_content"
+					android:singleLine="true"
+					android:textColor="#989898"/>
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_width="match_parent"
+					android:layout_height="40dp"
+					android:layout_gravity="center|center_horizontal">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="category:"
+						android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+					<EditText
+						android:id="@+id/browseract_et_category"
+						android:layout_width="120dp"
+						android:ems="10"
+						android:layout_height="wrap_content"/>
+
+					<ImageButton
+						android:layout_width="36dp"
+						style="?android:attr/buttonBarButtonStyle"
+						android:layout_height="36dp"
+						android:background="@drawable/caret3"
+						android:onClick="showCategPicker"/>
+
+				</LinearLayout>
+
+			</LinearLayout>
 
 			<LinearLayout
 				android:orientation="horizontal"
@@ -148,7 +183,7 @@
 					android:text="cancel"
 					android:onClick="savePageCancel"
 					android:textColor="#989898"
-					android:id="@+id/btn_save_rename_cancel"
+					android:id="@+id/browseract_btn_save_rename_cancel"
 					android:textStyle="italic"/>
 
 				<View
@@ -164,13 +199,67 @@
 					android:onClick="savePageConfirm"
 					android:textColor="#989898"
 					android:textStyle="italic"
-					android:id="@+id/btn_save_rename_save"/>
+					android:id="@+id/browseract_btn_save_rename_save"/>
 
 			</LinearLayout>
 
 		</LinearLayout>
 
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:id="@+id/browseract_categPicker"
+			android:visibility="gone"
+			android:onClick="closeCategChooser">
+
+			<LinearLayout
+				android:orientation="vertical"
+				android:layout_width="190dp"
+				android:layout_height="wrap_content"
+				android:background="#9C9C9C"
+				android:padding="1dp"
+				android:clickable="true"
+				android:layout_centerInParent="true">
+
+				<LinearLayout
+					android:orientation="vertical"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="#FFFFFF">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Choose Category"
+						android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+					<View
+						android:background="?android:attr/dividerVertical"
+						android:layout_width="match_parent"
+						android:layout_height="1dp"/>
+					
+					<ScrollView
+						android:layout_width="match_parent"
+						android:layout_height="300dp">
+
+						<LinearLayout
+							android:orientation="vertical"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:id="@+id/browseract_categ_list"/>
+
+					</ScrollView>
+
+				</LinearLayout>
+
+			</LinearLayout>
+
+		</RelativeLayout>
+
+		
+
 	</RelativeLayout>
 
 </RelativeLayout>
+
 

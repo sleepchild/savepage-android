@@ -1,4 +1,4 @@
-package mrtubbs.savepage;
+package sleepchild.savepage;
 
 public class Page{
 	//
@@ -11,7 +11,7 @@ public class Page{
 	}
 
 	public String getTitle(){
-		return this.title.replace(".mht","");
+		return this.title;
 	}
 
 	public String getPath(){

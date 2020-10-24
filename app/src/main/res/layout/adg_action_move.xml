@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:padding="10dp"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	
+	<LinearLayout
+		android:orientation="vertical"
+		android:id="@+id/adg_action_movecategs"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="choose category"
+			android:textColor="@color/azero"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_marginTop="10dp"/>
+
+		<View
+			android:background="@color/azero"
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:minWidth="250dp"
+			android:layout_marginTop="5dp"/>
+		<View  
+			android:layout_width="250dp"
+			android:layout_height="1dp"
+			android:layout_marginBottom="5dp"/>
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:onClick="otc"
+			android:tag="newcateg"
+			android:gravity="center_vertical"
+			android:paddingLeft="10dp"
+			android:paddingRight="10dp">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="create new"
+				android:textSize="18sp"
+				android:layout_weight="1.0"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_marginRight="15dp"/>
+
+			<ImageButton
+				android:layout_width="38dp"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="42dp"
+				android:background="@android:drawable/ic_menu_add"/>
+
+		</LinearLayout>
+
+		<View
+			android:background="@color/azero"
+			android:layout_width="match_parent"
+			android:layout_height="1dp"/>
+
+		<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="250dp">
+
+			<LinearLayout
+				android:id="@+id/adg_action_move_categ_container"
+				android:orientation="vertical"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+			</LinearLayout>
+
+		</ScrollView>
+
+	</LinearLayout>
+	
+	<LinearLayout
+		android:visibility="gone"
+		android:id="@+id/adg_action_move_newcategcontainer"
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="new category"
+			android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+		<View
+			android:background="#00a0a0"
+			android:layout_height="1dp"
+			android:layout_width="250dp"/>
+
+		<EditText
+			android:id="@+id/adg_action_newcategEditText"
+			android:layout_width="match_parent"
+			android:ems="10"
+			android:layout_height="wrap_content"/>
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="right"
+			android:paddingRight="10dp">
+
+			<Button
+				android:layout_width="wrap_content"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="wrap_content"
+				android:text="Cancel"
+				android:onClick="otc"
+				android:tag="cancel"
+				android:layout_marginRight="10dp"/>
+
+			<Button
+				android:id="@+id/adg_action_newcategButton"
+				android:layout_width="wrap_content"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="wrap_content"
+				android:text="done"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+	
+	
+</LinearLayout>
+
+
+
+
+

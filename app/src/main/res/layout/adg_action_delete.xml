@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:padding="10dp"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="sure to delete.."
+		android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text=""
+		android:textSize="20sp"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:id="@+id/delete_target_name"
+		android:maxLines="4"/>
+
+	<View
+		android:background="#00a0a0"
+		android:layout_width="250dp"
+		android:layout_height="1dp"/>
+
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="right">
+
+		<Button
+			android:layout_width="wrap_content"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_height="wrap_content"
+			android:text="cancel"
+			android:tag="cancel"
+			android:layout_marginRight="10dp"
+			android:onClick="otc"/>
+
+		<Button
+			android:layout_width="wrap_content"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_height="wrap_content"
+			android:text="delete"
+			android:tag="delete_confirmed"
+			android:layout_marginRight="10dp"
+			android:onClick="otc"/>
+
+	</LinearLayout>
+
+</LinearLayout>
+
+

@@ -1,26 +1,29 @@
 
 // package mrtubbs.fimi;
-package mrtubbs.savepage;
+package sleepchild.savepage;
 
 import android.content.*;
 import java.util.*;
 import android.os.*;
 import java.io.*;
+import android.graphics.*;
+import android.widget.*;
 
-public class FileManager
+public class Util
 {
 	private Context ctx;
-	private String dir = "/.mrtubbs/savepage/pages/"; // this shud be user editable
+	private String dir = "/.sleepchild/savepage/pages/"; //
 	private String folder, newPath;
 	private int inc = 1;
 	private String repl="73u6rt";
 	
-	FileManager(Context context){
+	
+	Util(Context context){
 		this.ctx = context;
 		folder = Environment.getExternalStorageDirectory().getAbsolutePath() + dir;
 		mkdirs(folder);
+		rmEmptyDirs();
 	}
-
 	
 	public String getSavePath(String filename, String categ){
 		mkdirs(folder+categ);
@@ -48,7 +51,7 @@ public class FileManager
 	
 	public List<Page> getPages(String category){
 		List<Page> clist;
-		if(category.equalsIgnoreCase("All")){
+		if(category.equalsIgnoreCase("all")){
 			clist = getFiles(folder);
 		}else{
 			clist = getFiles(folder+category);
@@ -92,11 +95,6 @@ public class FileManager
 			
 			if(fileExists(toPath)){
 				return false;
-				/*
-				if(overrwrite){
-					getFile(toPath).delete();
-				}
-				//*/
 			}
 			try
 			{
@@ -123,6 +121,19 @@ public class FileManager
 
 	}
 	
+	private void rmEmptyDirs(){
+		//
+		File fld =new File(folder);
+		for(File flx : fld.listFiles()){
+			if(flx.isDirectory()){
+				if(flx.listFiles().length <1){
+					flx.delete();
+				}
+			}
+		}
+	}
+	
+	
 	private List<Page>  getFiles(String fpath){
 		File pDir = new File(fpath);
 		List<Page> plist = new ArrayList<>();
@@ -132,12 +143,12 @@ public class FileManager
 				for(File xfl: fl.listFiles()){
 					// at this point we dont expect subfolders, but we'l check anyways
 					if(xfl.isFile()){
-						plist.add(new Page(xfl.getName(), xfl.getAbsolutePath()));
+						plist.add(new Page(xfl.getName().replace(".mht",""), xfl.getAbsolutePath()));
 					}// we'll ignore any folders here
 				}
 				//
 			}else if(fl.isFile()){
-				plist.add(new Page(fl.getName(), fl.getAbsolutePath()));
+				plist.add(new Page(fl.getName().replace(".mht",""), fl.getAbsolutePath()));
 			}
 		}
 		return plist;
@@ -157,6 +168,22 @@ public class FileManager
 	
 	public boolean fileExists(File file){
 		return file.exists();
+	}
+	
+	
+	public static boolean renameFile(Page page, String newname){
+		File fl = new File(page.getPath());
+		if(fl.exists()){
+			String np = fl.getAbsolutePath().replace(page.getTitle(), newname);
+			File nfl = new File(np);
+			fl.renameTo(nfl);
+			if(fl.exists()){return false ;}
+		}
+		return true;
+	}
+	
+	public static boolean deleteFile(String path){
+		return new File(path).delete();
 	}
 	
 	public String getUrlFromLocal(String path){
@@ -200,5 +227,16 @@ public class FileManager
 		//return "";
 	}	
 	
+	public static int parseCol(String col){
+		return Color.parseColor(col);
+	}
+	
+	public void toast(CharSequence msg){
+		Toast.makeText(ctx, msg, 500).show();
+	}
+	
+	public static void toast(Context ctx, CharSequence msg){
+		Toast.makeText(ctx, msg, 500).show();
+	}
 	
 }

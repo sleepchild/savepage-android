@@ -1,4 +1,4 @@
-package mrtubbs.savepage;
+package sleepchild.savepage;
 import android.widget.BaseAdapter;
 import java.util.List;
 import android.view.View;
@@ -11,6 +11,7 @@ import android.content.Context;
 public class mAdaptor extends BaseAdapter
 {
 	LayoutInflater mInflator;
+	
 	private List<Page> pagelist = new ArrayList<>();;
 
 	mAdaptor(Context ctx){
@@ -52,11 +53,12 @@ public class mAdaptor extends BaseAdapter
 		//
 		Page pg = pagelist.get(pos);
 		view = mInflator.inflate(R.layout.list_item,null);
-		TextView li_Title = (TextView) view.findViewById(R.id.li_tv_title);
+		TextView li_Title = (TextView) view.findViewById(R.id.listitem_tv_title);
+		
 		li_Title.setText(pg.getTitle());
-		view.setTag(pg.getPath());
-		//
+		view.setTag(pg);
 		//
 		return view;
 	}
+	
 }

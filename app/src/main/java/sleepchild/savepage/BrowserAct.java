@@ -1,7 +1,4 @@
-//
-//
-
-package mrtubbs.savepage;
+package sleepchild.savepage;
 //
 import android.app.Activity;
 import android.os.Bundle;
@@ -34,7 +31,7 @@ public class BrowserAct extends Activity
 	InputMethodManager imm;
 	Intent localIntent;
 	//
-	FileManager fm;
+	Util fm;
 	//
 	Context ctx_;
 
@@ -61,11 +58,14 @@ public class BrowserAct extends Activity
 						localPage = true;
 						//String pData = fm.readTextFile(path);
 						String baseurl = path;
+						
+						/*
 						try{
 							baseurl = fm.getUrlFromLocal(path.replace(PREFIX_FILE,""));
 						}catch(Exception e){
 							baseurl = path;
 						}
+						//*/
 						loadPage(path);
 						//loadLocalPage(baseurl,pData);
 						etUrl.setText(baseurl);
@@ -114,7 +114,7 @@ public class BrowserAct extends Activity
 		
 		saveRContainer = (RelativeLayout) findViewById(R.id.saveRenameContainer);
 		//
-		fm = new FileManager(ctx_);
+		fm = new Util(ctx_);
 		imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 		//
 		//
@@ -326,7 +326,7 @@ public class BrowserAct extends Activity
 		for(String cat: fm.getCategories()){
 			View view = lInf.inflate(R.layout.categ_item,null,false);
 			//*
-			TextView tv = (TextView) view.findViewById(R.id.tv_categ_item);
+			TextView tv = (TextView) view.findViewById(R.id.categ_item_title);
 			tv.setText(cat);
 			view.setTag(cat);
 			listHolder.addView(view);

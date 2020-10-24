@@ -4,10 +4,10 @@
     android:orientation="vertical">
 	
 	<TextView
-		android:id="@+id/li_tv_title"
+		android:id="@+id/listitem_tv_title"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:textSize="10pt"
+		android:textSize="16sp"
 		android:maxRows="3"
 		android:ellipsize="end"
 		android:paddingLeft="5dp"
@@ -18,6 +18,6 @@
 	<View
 		android:layout_height="1dp"
 		android:layout_width="match_parent"
-		android:background="#053181"/>
+		android:background="#00a0a0"/>
     
 </LinearLayout>

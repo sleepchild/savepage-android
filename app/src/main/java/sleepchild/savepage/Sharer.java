@@ -1,4 +1,4 @@
-package mrtubbs.savepage;
+package sleepchild.savepage;
 //
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,10 +9,10 @@ import android.widget.Toast;
 //
 
 //
-public class Sharer extends Activity
+public class Sharer extends Activity 
 {
-	Context ctx_;
-	final static String SAVEURL = "mrtubbs.savepage.SAVEURL";
+	Context ctx_; 
+	final static String SAVEURL = "sleepchild.savepage.SAVEURL";
 
 	@Override
 	protected void onStart()

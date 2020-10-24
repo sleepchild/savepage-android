@@ -5,13 +5,13 @@ android {
     buildToolsVersion "21.1.0"
 
     defaultConfig {
-        applicationId "mrtubbs.savepage"
+        applicationId "sleepchild.savepage"
         minSdkVersion 14
         targetSdkVersion 24
         versionCode 1
-        versionName "2020.09.22_003"
+        versionName "2020.10.13_004"
     }
-    buildTypes {
+    buildTypes { 
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

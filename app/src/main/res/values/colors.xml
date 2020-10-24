@@ -7,4 +7,6 @@
 	<color name="black">#000000</color>
 	<color name="tab_active">#000000</color>
 	<color name="tab_inactive">#7F7F7F</color>
+	
+	<color name="azero">#00a0a0</color>
 </resources>
